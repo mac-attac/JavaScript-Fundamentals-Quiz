@@ -18,6 +18,11 @@ var questions = [
         title: "What is the color of grass?",
         choices: ["green", "blue", "red", "yellow"],
         correct: "green"
+    },
+    {
+        title: "What is the color of the sky?",
+        choices: ["green", "blue", "red", "yellow"],
+        correct: "blue"
     }
 ]
 
@@ -31,25 +36,32 @@ startButton.addEventListener("click", startQuiz)
 
 
 function displayQuestion() {
+    console.log(i)
+    console.log(questions[i])
     questionTitle.textContent = questions[i].title
     choice1.textContent = questions[i].choices[0] 
     choice2.textContent = questions[i].choices[1] 
     choice3.textContent = questions[i].choices[2] 
     choice4.textContent = questions[i].choices[3]
 
-    questionChoices.addEventListener("click", checkAnswer)
+    choice1.addEventListener("click", checkAnswer)
+    choice2.addEventListener("click", checkAnswer)
+    choice3.addEventListener("click", checkAnswer)
+    choice4.addEventListener("click", checkAnswer)
+    
     //reference question array
     //questions[i].title
     //event listener on click of one answer button,  check answer()
 }
 
-function checkAnswer() {
-    if (questions[i].correct) {
-        questions++
+function checkAnswer(answer) {
+    if (answer == questions[i].correct) {
+        i++
+        console.log(i)
         displayQuestion()
     } else {
         // timeRemaining = --10
-        questions++
+        i++
         displayQuestion()
     }
     //this will check the answer

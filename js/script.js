@@ -10,6 +10,7 @@ var choice1 = document.querySelector("#choice1")
 var choice2 = document.querySelector("#choice2")
 var choice3 = document.querySelector("#choice3")
 var choice4 = document.querySelector("#choice4")
+var timer = document.querySelector(".time-left")
 
 var i = 0
 var questions = [
@@ -29,6 +30,7 @@ var questions = [
 function startQuiz () {
     startPage.setAttribute("class", "hide")
     questionsDiv.removeAttribute("class", "hide")
+    startTimer()
     displayQuestion()
 }
 
@@ -55,12 +57,11 @@ function displayQuestion() {
 }
 
 function checkAnswer(answer) {
-    if (answer == questions[i].correct) {
+    if (answer === questions[i].correct) {
         i++
-        console.log(i)
         displayQuestion()
     } else {
-        // timeRemaining = --10
+        timeRemaining = timeRemaining - 10
         i++
         displayQuestion()
     }
@@ -71,14 +72,19 @@ function checkAnswer(answer) {
 
 function endQuiz () {
     //similar to startquiz where we add hide on to div class
+    //score == timeRemaining
     
 }
+function startTimer() {
+var time = setInterval(function () {
+    if (timeRemaining > 0) {
+        timer.textContent = "Time Remaining: " + timeRemaining
+        timeRemaining--
+    } else clearInterval(time)
+    endQuiz()
+}, 1000)
+}
 
-// var timer = setInterval(function () {
-//     if (timeRemaining > 1) {
-        
-//     }
-// }, 1000)
 // for (i=0; i < questions.length; i++)
 //     prompt(questions.question[i])
 //     if (answer )

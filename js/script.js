@@ -6,6 +6,7 @@ var questionTitle = document.querySelector(".questiontitle")
 var questionChoices = document.querySelector(".questionchoices")
 var startButton = document.querySelector(".startbutton")
 var questionsDiv = document.querySelector(".questions")
+var hallOfFame = document.querySelector(".high-scorers")
 var choice1 = document.querySelector("#choice1")
 var choice2 = document.querySelector("#choice2")
 var choice3 = document.querySelector("#choice3")
@@ -38,23 +39,20 @@ startButton.addEventListener("click", startQuiz)
 
 
 function displayQuestion() {
-    console.log(i)
-    console.log(questions[i])
-    questionTitle.textContent = questions[i].title
-    choice1.textContent = questions[i].choices[0] 
-    choice2.textContent = questions[i].choices[1] 
-    choice3.textContent = questions[i].choices[2] 
-    choice4.textContent = questions[i].choices[3]
+    if (questions[i] < questions.length) {
+        questionTitle.textContent = questions[i].title
+        choice1.textContent = questions[i].choices[0] 
+        choice2.textContent = questions[i].choices[1] 
+        choice3.textContent = questions[i].choices[2] 
+        choice4.textContent = questions[i].choices[3]
 
-    choice1.addEventListener("click", checkAnswer)
-    choice2.addEventListener("click", checkAnswer)
-    choice3.addEventListener("click", checkAnswer)
-    choice4.addEventListener("click", checkAnswer)
-    
-    //reference question array
-    //questions[i].title
-    //event listener on click of one answer button,  check answer()
-}
+        choice1.addEventListener("click", checkAnswer)
+        choice2.addEventListener("click", checkAnswer)
+        choice3.addEventListener("click", checkAnswer)
+        choice4.addEventListener("click", checkAnswer)
+    } else {
+        endQuiz()
+    }}
 
 function checkAnswer(answer) {
     if (answer === questions[i].correct) {
@@ -68,23 +66,33 @@ function checkAnswer(answer) {
     //this will check the answer
     //will need i++ to increment questions 
     //then call display question
+}              
+
+function startTimer() {
+     var time = setInterval(function () {
+        if (timeRemaining > 0) {
+            timer.textContent = "Time Remaining: " + timeRemaining;
+            timeRemaining--
+        } else {clearInterval(time);
+        endQuiz()}
+    }, 1000)
 }
+
 
 function endQuiz () {
-    //similar to startquiz where we add hide on to div class
-    //score == timeRemaining
-    
-}
-function startTimer() {
-var time = setInterval(function () {
-    if (timeRemaining > 0) {
-        timer.textContent = "Time Remaining: " + timeRemaining
-        timeRemaining--
-    } else clearInterval(time)
-    endQuiz()
-}, 1000)
+    questionsDiv.setAttribute("class", "hide")
+    hallOfFame.removeAttribute("class", "hide")
+    score == timeRemaining
+    var highScorerInput = prompt("Please enter your initials:")
+    var highScore = {
+        initials: highScorerInput,
+        score: score,
+    }
+    highScoreStore = localStorage.setItem("high-score", JSON.stringify (highScore))
+   
 }
 
-// for (i=0; i < questions.length; i++)
-//     prompt(questions.question[i])
-//     if (answer )
+function displayHOF () {
+   var highScorers = localStorage.getItem(JSON.parse("highScoreStore"))
+   hallOfFame.textContent = highScorers
+}

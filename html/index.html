@@ -14,20 +14,27 @@
         </p>
         <button class="startbutton">Start</button>
     </div>
-    <div class="questions hide">
-        <h2 class="questiontitle" style="text-align: center;"></h2>
-        <div class="questionchoices" style="text-align: center;"></div>
+    <div class="questions">
+        <h2 class="questionTitle" style="text-align: center;"></h2>
+        <div class="questionChoices" style="text-align: center;"></div>
             <div class= "button-list" style= "text-align:center;">
-                <button id= "choice1"></button> <br>
-                <button id= "choice2"></button> <br>
-                <button id= "choice3"></button> <br>
-                <button id= "choice4"></button> <br>
+                <ol>
+                    <button id= "choice1" data-choice="0"></button>
+                    <button id= "choice2" data-choice="1"></button>
+                    <button id= "choice3" data-choice="2"></button>
+                    <button id= "choice4" data-choice="3"></button>
+                </ol>
             </div>
+            <div>
+                <h4 id='correct-or-incorrect'></h4>
+            </div>
+        </div>
+        
     </div>
     <div class="timer">
-        <h3 class="time-left" style="text-align: center;"></h3>
+        <h3 class="time-left"></h3>
     </div>
-    <div class="hall-of-fame hide">
+    <div class="hall-of-fame">
         <h1 style="text-align: center;">Hall of Fame</h1>
         <div class="high-scorers" style="text-align: center;"></div>
     </div>

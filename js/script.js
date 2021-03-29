@@ -11,6 +11,8 @@ var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var hallOfFame = document.querySelector(".hall-of-fame");
 var highScorers = document.querySelector(".high-scorers");
+var yourScore = document.querySelector("#your-score");
+var addScore = document.querySelector("#add-initials");
 var timer = document.querySelector(".timer");
 
 var timerInterval;
@@ -101,26 +103,15 @@ function startTimer() {
 
 function endQuiz() {
   clearInterval(timerInterval);
-  score === timeRemaining;
+  let score;
+  score = timeRemaining;
   questionsDiv.style.display = "none";
+  timer.style.display = "none";
   hallOfFame.style.display = "block";
-  alert("Your score was " + score + "!");
-  // displayHOF()
+  highScorers.style.display = "block";
+  yourScore.textContent = `Your score was ${score}!`;
 }
 
-// function displayHOF () {
-//     score === timeRemaining
-//     var highScorerInput = prompt("Please enter your initials:")
-//     var highScore = {
-//         initials: highScorerInput,
-//         score: score,
-//     }
-//     highScoreStore = localStorage.setItem("high-score", JSON.stringify("highScore"))
-//     var leaderBoard = localStorage.getItem(JSON.parse("highScoreStore"))
-//     highScorers.textContent = leaderBoard
-// }
-
-//click on the start button which executes the startQuiz function
 startButton.addEventListener("click", startQuiz);
 
 choice1.addEventListener("click", checkAnswer);
@@ -129,4 +120,5 @@ choice3.addEventListener("click", checkAnswer);
 choice4.addEventListener("click", checkAnswer);
 
 hallOfFame.style.display = "none";
+highScorers.style.display = "none";
 questionsDiv.style.display = "none";

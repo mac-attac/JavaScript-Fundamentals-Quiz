@@ -5,3 +5,8 @@
 .show {
   display: block;
 }
+
+.button-list {
+  padding: auto;
+  margin: auto;
+}
